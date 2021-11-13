@@ -1,0 +1,236 @@
+$background-head-inputs: transparent;
+$background-body: #d8d8d6;
+$twenty: 20px;
+$shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+$marginLi: 5px 10px 0px 10px;
+$background-color-hover: rgba(255, 17, 180, 0.1);
+$background-color-active: rgba(255, 88, 119, 0.1);
+
+%hover-active-props {
+  &:hover {
+    background-color: $background-color-hover;
+    color: #ffffff;
+  }
+
+  &:active {
+    background-color: $background-color-active;
+    box-shadow: 1px 2px 8px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 2px 8px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 2px 8px 3px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+  }
+}
+
+%input-props {
+  padding: 10px;
+  margin: $twenty;
+  border-radius: 4px;
+}
+
+%form-props {
+  margin: $twenty;
+  background: $background-head-inputs;
+  box-shadow: $shadow;
+}
+
+%button-props {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  color: #ffffff;
+  padding: 12px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 2px;
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+%li-props {
+  border-radius: 5px;
+  background: transparent;
+  box-shadow: $shadow;
+}
+
+%list-props {
+  color: black;
+  font-size: 14px;
+  font-family: Georgia, Times, serif;
+  margin-right: 35px;
+  flex-wrap: wrap;
+}
+
+
+body {
+  background: $background-body;
+  font-family: sans-serif, serif;
+}
+
+.container {
+  justify-content: center;
+  margin: 0 auto;
+  background: transparent;
+  max-width: 1000px;
+  min-height: 900px;
+}
+
+.App {
+  padding: 30px;
+  text-align: center;
+}
+
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(100px);
+    opacity: 0;
+  }
+}
+.todo-exit-active{
+  animation: fade-out 500ms forwards ;
+}
+.todo-enter-active{
+  animation: fade-in 500ms forwards;
+}
+
+.Post {
+  .someText {
+    @extend %form-props;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  textarea {
+    @extend %input-props;
+    flex-basis: 80%;
+  }
+
+  .save {
+    margin-top: $twenty;
+    height: 50px;
+    flex-basis: 10%;
+    @extend %button-props;
+    @extend %hover-active-props;
+  }
+
+  .searchTag {
+    @extend %form-props;
+    border-radius: 5px;
+    flex-basis: 70%;
+    display: inline-block;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+  }
+
+  input {
+    @extend %input-props;
+  }
+
+  .tagButton {
+    @extend %button-props;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 30px;
+    margin: 1rem $twenty 0 0;
+    @extend %hover-active-props;
+
+  }
+
+  .listBox {
+    @extend %list-props;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-position: inside;
+    list-style-type: upper-roman;
+
+
+    .notes {
+      @extend %li-props;
+      margin: $twenty;
+      padding: $twenty;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .someNote {
+        width: 300px;
+        margin-right: auto;
+        word-wrap: break-word;
+
+      }
+
+      .delNote {
+        @extend %button-props;
+        margin: $marginLi;
+        border-radius: 10px;
+        @extend %hover-active-props;
+      }
+
+      .changeNote {
+        @extend %button-props;
+        margin: $marginLi;
+        border-radius: 10px;
+        @extend %hover-active-props;
+      }
+
+    }
+
+    .containerNote {
+      @extend %list-props;
+      display: inline-flex;
+      flex-direction: row;
+      list-style-type: none;
+      flex-wrap: wrap;
+
+      .tags {
+        @extend %li-props;
+        padding: 10px;
+        margin: 5px;
+        width: 145px;
+        word-wrap: break-word;
+
+        .active {
+          padding: 10px;
+          color: white;
+          background-color: #474749;
+          border-radius: 10px;
+          word-wrap: break-word;
+        }
+      }
+
+      .delTag {
+        @extend %button-props;
+        margin-top: 20px;
+        border-radius: 10px;
+        @extend %hover-active-props;
+      }
+    }
+
+  }
+
+  @media only screen and (max-width: 700px) {
+    .container {
+      background-color: rgb(163, 221, 240);
+    }
+  }
+}
